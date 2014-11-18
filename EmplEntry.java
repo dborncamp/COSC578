@@ -199,6 +199,7 @@ public class EmplEntry extends javax.swing.JDialog {
       empData[3] = empAddress.getText();
       empData[4] = Shift.getSelectedItem().toString();
       this.setVisible(false);
+      reset();
    }//GEN-LAST:event_jButton1ActionPerformed
 
    /**
@@ -241,6 +242,13 @@ public class EmplEntry extends javax.swing.JDialog {
             dialog.setVisible(true);
          }
       });
+   }
+   
+   private void reset(){
+      empAddress.setText(null);
+      empFName.setText(null);
+      empLName.setText(null);
+      empNumber.setText(null);
    }
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JComboBox Shift;

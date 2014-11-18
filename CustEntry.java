@@ -126,6 +126,7 @@ public class CustEntry extends javax.swing.JDialog {
       custData[1] = custFName.getText();
       custData[2] = custLName.getText();
       this.setVisible(false);
+      reset();
    }//GEN-LAST:event_jButton1ActionPerformed
 
    /**
@@ -169,6 +170,14 @@ public class CustEntry extends javax.swing.JDialog {
          }
       });
    }
+   
+   private void reset(){
+      custFName.setText(null);
+      custLName.setText(null);
+      custNumber.setText(null);
+      
+   }
+   
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JTextField custFName;
    private javax.swing.JTextField custLName;

@@ -179,6 +179,11 @@ public class CustHistory extends javax.swing.JDialog {
          }
       });
    }
+   
+   private void reset(){
+      custId.setText(null);
+   }
+   
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JTable custHistTable;
    private javax.swing.JTextField custId;
