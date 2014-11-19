@@ -19,15 +19,18 @@ public class BaseGUI extends javax.swing.JFrame {
    private EmplEntry empDia;
    private CustEntry custDia;
    private CustHistory custHist;
+   private InventoryEntry invDia;
    
    /**
     * Creates new form BaseGUI
     */
    public BaseGUI() {
       initComponents();
+      //initialize dialog boxes
       empDia = new EmplEntry(this, true); 
       custDia = new CustEntry(this, true);
       custHist = new CustHistory(this, true);
+      invDia = new InventoryEntry(this, true);
    }
 
    /**
@@ -54,6 +57,9 @@ public class BaseGUI extends javax.swing.JFrame {
       getCustHist = new javax.swing.JButton();
       label2 = new java.awt.Label();
       jPanel3 = new javax.swing.JPanel();
+      jScrollPane5 = new javax.swing.JScrollPane();
+      invTable = new javax.swing.JTable();
+      newInventory = new javax.swing.JButton();
       jPanel4 = new javax.swing.JPanel();
       jMenuBar1 = new javax.swing.JMenuBar();
       jMenu1 = new javax.swing.JMenu();
@@ -123,7 +129,7 @@ public class BaseGUI extends javax.swing.JFrame {
             .addComponent(newEmployee)
             .addGap(18, 18, 18)
             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(34, Short.MAX_VALUE))
+            .addContainerGap(84, Short.MAX_VALUE))
       );
 
       newEmployee.getAccessibleContext().setAccessibleName("jbutton1");
@@ -191,20 +197,57 @@ public class BaseGUI extends javax.swing.JFrame {
                .addComponent(getCustHist))
             .addGap(59, 59, 59)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(37, Short.MAX_VALUE))
+            .addContainerGap(87, Short.MAX_VALUE))
       );
 
       jTabbedPane1.addTab("Customer", jPanel2);
+
+      invTable.setModel(new javax.swing.table.DefaultTableModel(
+         new Object [][] {
+
+         },
+         new String [] {
+            "Item Type", "Item #", "Item Name", "Quantity", "Shelf Life", "Cost", "Total Used"
+         }
+      ) {
+         boolean[] canEdit = new boolean [] {
+            false, false, false, false, false, false, false
+         };
+
+         public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+         }
+      });
+      jScrollPane5.setViewportView(invTable);
+
+      newInventory.setText("New Inventory Item");
+      newInventory.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            newInventoryActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
       jPanel3.setLayout(jPanel3Layout);
       jPanel3Layout.setHorizontalGroup(
          jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 705, Short.MAX_VALUE)
+         .addGroup(jPanel3Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+               .addGroup(jPanel3Layout.createSequentialGroup()
+                  .addComponent(newInventory)
+                  .addGap(0, 0, Short.MAX_VALUE)))
+            .addContainerGap())
       );
       jPanel3Layout.setVerticalGroup(
          jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 399, Short.MAX_VALUE)
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGap(37, 37, 37)
+            .addComponent(newInventory)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())
       );
 
       jTabbedPane1.addTab("Inventory", jPanel3);
@@ -217,7 +260,7 @@ public class BaseGUI extends javax.swing.JFrame {
       );
       jPanel4Layout.setVerticalGroup(
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 399, Short.MAX_VALUE)
+         .addGap(0, 449, Short.MAX_VALUE)
       );
 
       jTabbedPane1.addTab("Sales", jPanel4);
@@ -263,8 +306,8 @@ public class BaseGUI extends javax.swing.JFrame {
    private void newEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEmployeeActionPerformed
       empDia.setVisible(true);
       String[] data = empDia.getEmpData();
-      DefaultTableModel model = (DefaultTableModel) empTable.getModel();
-      model.addRow(data);
+      DefaultTableModel empModel = (DefaultTableModel) empTable.getModel();
+      empModel.addRow(data);
 //      JOptionPane.showInputDialog(
 //            null, d, "Output : ");
       
@@ -283,9 +326,16 @@ public class BaseGUI extends javax.swing.JFrame {
       custDia.setVisible(true);
       String[] custData = custDia.getEmpData();
       //System.out.println(custData.toString());
-      DefaultTableModel model = (DefaultTableModel) custTable.getModel();
-      model.addRow(custData);
+      DefaultTableModel custModel = (DefaultTableModel) custTable.getModel();
+      custModel.addRow(custData);
    }//GEN-LAST:event_newCustActionPerformed
+
+   private void newInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newInventoryActionPerformed
+      invDia.setVisible(true);
+      String [] invData = invDia.getEmpData();
+      DefaultTableModel invModel = (DefaultTableModel) invTable.getModel();
+      invModel.addRow(invData);
+   }//GEN-LAST:event_newInventoryActionPerformed
 
    /**
     * @param args the command line arguments
@@ -325,6 +375,7 @@ public class BaseGUI extends javax.swing.JFrame {
    private javax.swing.JTable custTable;
    private javax.swing.JTable empTable;
    private javax.swing.JButton getCustHist;
+   private javax.swing.JTable invTable;
    private javax.swing.JDialog jDialog1;
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenu jMenu2;
@@ -338,9 +389,11 @@ public class BaseGUI extends javax.swing.JFrame {
    private javax.swing.JScrollPane jScrollPane2;
    private javax.swing.JScrollPane jScrollPane3;
    private javax.swing.JScrollPane jScrollPane4;
+   private javax.swing.JScrollPane jScrollPane5;
    private javax.swing.JTabbedPane jTabbedPane1;
    private java.awt.Label label2;
    private javax.swing.JButton newCust;
    private javax.swing.JButton newEmployee;
+   private javax.swing.JButton newInventory;
    // End of variables declaration//GEN-END:variables
 }
