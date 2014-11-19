@@ -308,6 +308,7 @@ public class BaseGUI extends javax.swing.JFrame {
       String[] data = empDia.getEmpData();
       DefaultTableModel empModel = (DefaultTableModel) empTable.getModel();
       empModel.addRow(data);
+      empModel = null;
 //      JOptionPane.showInputDialog(
 //            null, d, "Output : ");
       
@@ -328,6 +329,7 @@ public class BaseGUI extends javax.swing.JFrame {
       //System.out.println(custData.toString());
       DefaultTableModel custModel = (DefaultTableModel) custTable.getModel();
       custModel.addRow(custData);
+      custModel = null;
    }//GEN-LAST:event_newCustActionPerformed
 
    private void newInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newInventoryActionPerformed
@@ -335,6 +337,7 @@ public class BaseGUI extends javax.swing.JFrame {
       String [] invData = invDia.getEmpData();
       DefaultTableModel invModel = (DefaultTableModel) invTable.getModel();
       invModel.addRow(invData);
+      invModel = null;
    }//GEN-LAST:event_newInventoryActionPerformed
 
    /**
