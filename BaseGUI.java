@@ -113,14 +113,13 @@ public class BaseGUI extends javax.swing.JFrame {
       jPanel1Layout.setHorizontalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addGap(33, 33, 33)
-                  .addComponent(newEmployee))
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addContainerGap()
-                  .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(33, 33, 33)
+            .addComponent(newEmployee)
+            .addContainerGap(738, Short.MAX_VALUE))
+         .addGroup(jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jScrollPane4)
+            .addContainerGap())
       );
       jPanel1Layout.setVerticalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,8 +127,8 @@ public class BaseGUI extends javax.swing.JFrame {
             .addGap(30, 30, 30)
             .addComponent(newEmployee)
             .addGap(18, 18, 18)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(84, Short.MAX_VALUE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addContainerGap())
       );
 
       newEmployee.getAccessibleContext().setAccessibleName("jbutton1");
@@ -175,7 +174,7 @@ public class BaseGUI extends javax.swing.JFrame {
          jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel2Layout.createSequentialGroup()
             .addGap(13, 13, 13)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
             .addContainerGap())
          .addGroup(jPanel2Layout.createSequentialGroup()
             .addContainerGap()
@@ -196,8 +195,8 @@ public class BaseGUI extends javax.swing.JFrame {
                .addComponent(newCust)
                .addComponent(getCustHist))
             .addGap(59, 59, 59)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(87, Short.MAX_VALUE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+            .addContainerGap())
       );
 
       jTabbedPane1.addTab("Customer", jPanel2);
@@ -234,7 +233,7 @@ public class BaseGUI extends javax.swing.JFrame {
          .addGroup(jPanel3Layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+               .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
                .addGroup(jPanel3Layout.createSequentialGroup()
                   .addComponent(newInventory)
                   .addGap(0, 0, Short.MAX_VALUE)))
@@ -245,8 +244,8 @@ public class BaseGUI extends javax.swing.JFrame {
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
             .addGap(37, 37, 37)
             .addComponent(newInventory)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
             .addContainerGap())
       );
 
@@ -256,11 +255,11 @@ public class BaseGUI extends javax.swing.JFrame {
       jPanel4.setLayout(jPanel4Layout);
       jPanel4Layout.setHorizontalGroup(
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 705, Short.MAX_VALUE)
+         .addGap(0, 896, Short.MAX_VALUE)
       );
       jPanel4Layout.setVerticalGroup(
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 449, Short.MAX_VALUE)
+         .addGap(0, 582, Short.MAX_VALUE)
       );
 
       jTabbedPane1.addTab("Sales", jPanel4);
@@ -286,16 +285,11 @@ public class BaseGUI extends javax.swing.JFrame {
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap(19, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())
+         .addComponent(jTabbedPane1)
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jTabbedPane1))
+         .addComponent(jTabbedPane1)
       );
 
       pack();
@@ -305,10 +299,13 @@ public class BaseGUI extends javax.swing.JFrame {
 
    private void newEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newEmployeeActionPerformed
       empDia.setVisible(true);
-      String[] data = empDia.getEmpData();
-      DefaultTableModel empModel = (DefaultTableModel) empTable.getModel();
-      empModel.addRow(data);
-      empModel = null;
+      String[] empData = empDia.getEmpData();
+      //only enter if the number is not empty
+      if (!empData[0].equals("")){
+         DefaultTableModel empModel = (DefaultTableModel) empTable.getModel();
+         empModel.addRow(empData);
+         empModel = null;
+      }
 //      JOptionPane.showInputDialog(
 //            null, d, "Output : ");
       
@@ -327,17 +324,23 @@ public class BaseGUI extends javax.swing.JFrame {
       custDia.setVisible(true);
       String[] custData = custDia.getEmpData();
       //System.out.println(custData.toString());
-      DefaultTableModel custModel = (DefaultTableModel) custTable.getModel();
-      custModel.addRow(custData);
-      custModel = null;
+      //only enter if the number is not empty
+      if (!custData[0].equals("")){
+         DefaultTableModel custModel = (DefaultTableModel) custTable.getModel();
+         custModel.addRow(custData);
+         custModel = null;
+      }
    }//GEN-LAST:event_newCustActionPerformed
 
    private void newInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newInventoryActionPerformed
       invDia.setVisible(true);
       String [] invData = invDia.getEmpData();
-      DefaultTableModel invModel = (DefaultTableModel) invTable.getModel();
-      invModel.addRow(invData);
-      invModel = null;
+      //only enter if the number is not empty
+      if (!invData[0].equals("")){
+         DefaultTableModel invModel = (DefaultTableModel) invTable.getModel();
+         invModel.addRow(invData);
+         invModel = null;
+      }
    }//GEN-LAST:event_newInventoryActionPerformed
 
    /**
